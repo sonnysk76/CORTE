@@ -1,16 +1,21 @@
 <?php
-try
-{
-    $pdo = new PDO('mysql:host=127.0.0.1;dbname=corte','root','Salmita7');
-}   catch(PDOException $e)
-{
-    die('No se puede conectar. '.$e);
-}
+require_once("../clases/db2.php");
+$db = new db2();
+
+$q = 'SELECT * FROM efectivo ORDER BY id DESC LIMIT 2';
+$corte = $db->query($q);
+$r = count($corte);
+var_dump($corte);
+die;
+//$db->close();
+/*
+
 $statement = $pdo->prepare('SELECT * FROM efectivo ORDER BY id DESC LIMIT 2');
 $statement->execute();
 $corte = $statement->fetchAll(PDO::FETCH_ASSOC);
 $r=count($corte);
-
+*/
 //echo "<pre>";
 //die(var_dump($corte));
 //echo "</pre>";
+  ?>

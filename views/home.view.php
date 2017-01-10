@@ -84,7 +84,7 @@
 	</div>
     
 <?php
-//Despliega la tabla inferior con el resumen de los 2 cortes anteriores.
+//Resumen de la informacion capturada.
                         require 'ResInf.php';
 ?>
 

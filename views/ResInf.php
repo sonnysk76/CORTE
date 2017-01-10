@@ -2,7 +2,7 @@
 			<?php 
 			require_once ("../controllers/resumen.php");
 			?>
-			<h4 class="col-md-4">Caja inicial:<strong> $<?php print $corte2[0]["fin"]; ?></strong></h4>
+			<h4 class="col-md-4">Caja inicial:<strong> $<?php print $corte2["fin"]; ?></strong></h4>
 			<h4 class="col-md-4">Total Efectivo:<strong> $<?php print $corte["totalEfectivo"]; ?></strong></h4>
 			<h4 class="col-md-4">Total de Notas:<strong> $<?php print $corte["totalNotas"]; ?></strong></h4>
 			<h4 class="col-md-4">Total de Ventas:<strong> $<?php print $corte["totalVenta"]; ?></strong></h4>

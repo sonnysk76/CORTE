@@ -1,15 +1,9 @@
 <?php
-
-
-
-
-
-
 class db{
 
     private $host = "localhost";
     private $usuario = "root";
-    private $clave = "Salmita7";
+    private $clave = "";
     private $db = "corte";
     private $conn;
 
