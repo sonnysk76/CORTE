@@ -18,7 +18,7 @@ public static function buscaUsuario($nombre,$clave)
         $data = $db->query($q);
         $db->close();
         unset($db);
-        if ($data['nombre']==$nombre && $data['clave']==$clave){
+        if ($data[0]['nombre']==$nombre && $data[0]['clave']==$clave){
           return true;
         }
     }

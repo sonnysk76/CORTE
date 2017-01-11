@@ -1,27 +1,29 @@
 <?php
 //require_once("clases/db.php");
 require_once("../clases/Corte.php");
+require_once("../clases/db2.php");
+
 $corte = new Corte();
 if($_POST["sistema"]!="")
 {
-    $corte->diezC=$_POST["diezC"];
-    $corte->veinteC=$_POST["veinteC"];
-    $corte->cincuentaC=$_POST["cincuentaC"];
-    $corte->unP=$_POST["unP"];
-    $corte->dosP=$_POST["dosP"];
-    $corte->cincoP=$_POST["cincoP"];
-    $corte->diezP=$_POST["diezP"];  
-    $corte->veinteP=$_POST["veinteP"];
-    $corte->cincuentaP=$_POST["cincuentaP"];
-    $corte->cienP=$_POST["cienP"];    
-    $corte->doscientosP=$_POST["doscientosP"];
-    $corte->quinientosP=$_POST["quinientosP"];
-    $corte->hielo=$_POST["hielo"];
-    $corte->agua=$_POST["agua"];
-    $corte->otros=$_POST["otros"];
-    $corte->tarjetas=$_POST["tarjetas"];
-    $corte->sistema=$_POST["sistema"];
-    $corte->retiro=$_POST["retiro"];
+    $corte->diezC+=$_POST["diezC"];
+    $corte->veinteC+=$_POST["veinteC"];
+    $corte->cincuentaC+=$_POST["cincuentaC"];
+    $corte->unP+=$_POST["unP"];
+    $corte->dosP+=$_POST["dosP"];
+    $corte->cincoP+=$_POST["cincoP"];
+    $corte->diezP+=$_POST["diezP"];  
+    $corte->veinteP+=$_POST["veinteP"];
+    $corte->cincuentaP+=$_POST["cincuentaP"];
+    $corte->cienP+=$_POST["cienP"];    
+    $corte->doscientosP+=$_POST["doscientosP"];
+    $corte->quinientosP+=$_POST["quinientosP"];
+    $corte->hielo+=$_POST["hielo"];
+    $corte->agua+=$_POST["agua"];
+    $corte->otros+=$_POST["otros"];
+    $corte->tarjetas+=$_POST["tarjetas"];
+    $corte->sistema+=$_POST["sistema"];
+    $corte->retiro+=$_POST["retiro"];
 
     $corte->monedas =
         (
@@ -58,17 +60,15 @@ if($_POST["sistema"]!="")
         );
 
     
+$db = new db2();
+
+$q = 'SELECT * FROM efectivo ORDER BY id DESC LIMIT 1';
+$fin = $db->queryObjeto($q);
 
 
-}
+  
+/*
 
-try
-{
-    $link = new PDO('mysql:host=127.0.0.1;dbname=corte','root','Salmita7');
-}   catch(PDOException $e)
-{
-    die('No se puede conectar. '.$e);
-}
 
 $consulta = $link->prepare("SELECT fin FROM efectivo ORDER BY id DESC LIMIT 1");
 
@@ -77,21 +77,30 @@ $consulta->execute();
 $fin = $consulta->fetchAll(PDO::FETCH_OBJ);
 
 //die(var_dump($fin[0]->fin));
-
+*/
 
 $corte->totalVenta = $corte->totalEfectivo - $fin[0]->fin + $corte->totalNotas;
     $corte->diferencia = $corte->totalVenta - $corte->sistema;
     $corte->fin = $corte->totalEfectivo - $corte->retiro;
-    $fecha = date("Y-m-d H:i:s");
 
-$statement = $link->prepare("INSERT INTO efectivo 
+ //$dc= $corte->diezC;
+
+  $inicio = $fin[0]->fin;
+
+  
+$q="INSERT INTO efectivo 
 (id, diezCentavos, veinteCentavos, cincuentaCentavos, unPeso, dosPesos, cincoPesos, diezPesos, 
 veintePesos, cincuentaPesos, cienPesos, doscientosPesos, quinientosPesos, 
 hielo, agua, otros, tarjetas, sistema, inicio, retiro, fin, diferencia, 
 totalNotas, totalVenta, totalEfectivo, fecha) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+VALUES (NULL,$corte->diezC,$corte->veinteC, $corte->cincuentaC, $corte->unP, $corte->dosP,
+$corte->cincoP, $corte->diezP, $corte->veinteP,$corte->cincuentaP, $corte->cienP, $corte->doscientosP,
+$corte->quinientosP, $corte->hielo, $corte->agua, $corte->otros, $corte->tarjetas, $corte->sistema,
+$inicio, $corte->retiro, $corte->fin, $corte->diferencia, $corte->totalNotas,
+$corte->totalVenta, $corte->totalEfectivo, NULL)";
 
-$statement->execute(array(
+  
+/*$$val=array(
     NULL,
     $corte->diezC,
     $corte->veinteC,
@@ -118,5 +127,9 @@ $statement->execute(array(
     $corte->totalVenta,
     $corte->totalEfectivo,
     $fecha
-));
+);*/
+ $statement = $db->saveRecord($q);
+  
+
 header("location:../views/home.view.php");
+}
