@@ -6,4 +6,4 @@ tarjeta, y hace la reconciliacion contra las cantidades reportadas por el sistem
 Programa desarrollado en LAMP   Linux/Apache/MySQL/PHP
 Utiliza bootstrap para la interfaz de usuario.
 
-Incluye un archivo sql para importar la basela base de datos en PhpMyAdmin.
+Incluye un archivo sql para importar la base de datos en PhpMyAdmin.
