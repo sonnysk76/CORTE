@@ -4,13 +4,13 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Kala | Corte de Caja</title>
 	<!-- start css template tags -->
-	<link rel="stylesheet" type="text/css" href="dist/bootstrap.min.css?rel=9ed20b1ee8"/>
-	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	<link rel="stylesheet" type="text/css" href="../dist/bootstrap.min.css?rel=9ed20b1ee8"/>
+	<link rel="stylesheet" type="text/css" href="../css/login.css"/>
 	<!-- end css template tags -->
 </head>
 <body>
 	<div id="logo" align="center">
-		<img src="images/logo.png">
+		<img src="../images/logo.png" alt="Cafetería Kala">
 	</div>
 	<div id="login">
 		<div id="container">
@@ -18,11 +18,11 @@
 			</div>
 			<div id="login_form">
 <!--1.- La forma captura usuario y contraseña y se conecta a validaLogin.php para validar usuario y contraseña en base de datos-->
-			<form action="controllers/validaLogin.php" method="post">
+			<form action="../controllers/validaLogin.php" method="post">
 				Usuario: <br>
-				<input type="text" name="usuario" autofocus><br><br>
+				<input type="text" name="usuario" title="usuario"><br><br>
 				Clave: <br>
-				<input type="password" name="clave"><br>
+				<input type="password" name="clave" title="clave"><br>
 				<input class="btn btn-primary btn-block" type="submit" value="Entrar">
 			</div>
 		</div>

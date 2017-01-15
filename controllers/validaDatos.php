@@ -1,7 +1,6 @@
 <?php
-//require_once("clases/db.php");
-require_once("../clases/Corte.php");
-require_once("../clases/db2.php");
+require_once("../clases/clases.php");
+
 
 $corte = new Corte();
 if($_POST["sistema"]!="")
@@ -67,23 +66,12 @@ $fin = $db->queryObjeto($q);
 
 
   
-/*
 
-
-$consulta = $link->prepare("SELECT fin FROM efectivo ORDER BY id DESC LIMIT 1");
-
-$consulta->execute();
-
-$fin = $consulta->fetchAll(PDO::FETCH_OBJ);
-
-//die(var_dump($fin[0]->fin));
-*/
 
 $corte->totalVenta = $corte->totalEfectivo - $fin[0]->fin + $corte->totalNotas;
     $corte->diferencia = $corte->totalVenta - $corte->sistema;
     $corte->fin = $corte->totalEfectivo - $corte->retiro;
 
- //$dc= $corte->diezC;
 
   $inicio = $fin[0]->fin;
 
@@ -99,37 +87,10 @@ $corte->quinientosP, $corte->hielo, $corte->agua, $corte->otros, $corte->tarjeta
 $inicio, $corte->retiro, $corte->fin, $corte->diferencia, $corte->totalNotas,
 $corte->totalVenta, $corte->totalEfectivo, NULL)";
 
-  
-/*$$val=array(
-    NULL,
-    $corte->diezC,
-    $corte->veinteC,
-    $corte->cincuentaC,
-    $corte->unP,
-    $corte->dosP,
-    $corte->cincoP,
-    $corte->diezP,  
-    $corte->veinteP,
-    $corte->cincuentaP,
-    $corte->cienP,   
-    $corte->doscientosP,
-    $corte->quinientosP,
-    $corte->hielo,
-    $corte->agua,
-    $corte->otros,
-    $corte->tarjetas,
-    $corte->sistema,
-    $fin[0]->fin,//inicio es el fin de la venta anterior
-    $corte->retiro,
-    $corte->fin,
-    $corte->diferencia,
-    $corte->totalNotas,
-    $corte->totalVenta,
-    $corte->totalEfectivo,
-    $fecha
-);*/
+
  $statement = $db->saveRecord($q);
   
 
 header("location:../views/home.view.php");
 }
+?>

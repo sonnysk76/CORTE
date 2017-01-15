@@ -6,7 +6,7 @@
 	<!-- start css template tags -->
 	<link rel="stylesheet" type="text/css" href="../dist/bootstrap.min.css?rel=9ed20b1ee8"/>
 	<!-- end css template tags -->
-        <style>
+        <style type="text/css">
             .suc {
                 background-color:rgba(230,189,130,0.5);
             }
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="jumbotron text-center card-3" style="background-color:rgba(230,189,130,0.5); padding:5px; margin:0;">
-        <a href="../index.php"><img class="card-3" style="background-color:white;" src="../images/logo.png"></img></a>
+        <a href="../index.php"><img class="card-3" style="background-color:white;" src="../images/logo.png" alt="Cafetería Kala"/></a>
     </div>
 	<div class="container card-2" style="background-color:rgba(255,221,0,0.1);">
             <form 	action="../controllers/validaDatos.php" method="post">
@@ -82,16 +82,89 @@
                 <span class="col-md-10"><input class="btn btn-danger btn-block card-3" type="submit" value="Enviar"></span>
             </form>
 	</div>
-    
-<?php
-//Resumen de la informacion capturada.
-                        require 'ResInf.php';
-?>
 
-<?php
-//Despliega la tabla inferior con el resumen de los 2 cortes anteriores.
-                        require 'TabInf.php';
-?>
+    <div class="container">
+        <?php
+        require_once ("../controllers/resumen.php");
+        ?>
+        <h4 class="col-md-4">Caja inicial:<strong> $<?php print $corte2[0]["fin"]; ?></strong></h4>
+        <h4 class="col-md-4">Total Efectivo:<strong> $<?php print $corte[0]["totalEfectivo"]; ?></strong></h4>
+        <h4 class="col-md-4">Total de Notas:<strong> $<?php print $corte[0]["totalNotas"]; ?></strong></h4>
+        <h4 class="col-md-4">Total de Ventas:<strong> $<?php print $corte[0]["totalVenta"]; ?></strong></h4>
+        <h4 class="col-md-4">Total en Sistema:<strong> $<?php print $corte[0]["sistema"]; ?></strong></h4>
+        <h4 class="col-md-4">Diferencia:<strong> $<?php print $corte[0]["diferencia"]; ?></strong></h4>
+        <h4 class="col-md-4">Retiro:<strong> $<?php print $corte[0]["retiro"]; ?></strong></h4>
+        <h4 class="col-md-4"> Caja Final:<strong> $<?php print $corte[0]["fin"]; ?></strong></h4>
+        <h4 class="col-md-4">Fecha/Hora:<strong> <?php echo $corte[0]["fecha"]?></strong></h4>
+    </div>
+
+<div class="container-fluid" style="background-color:rgba(255,221,0,0.1);">
+	<table class="table table-bordered">
+		<tr>
+			<th class="suc col-md-1">Fecha</th>
+			<!--		<th class="suc col-md-1">$0.10</th>
+						<th class="suc col-md-1" >$0.20</th> -->
+			<th class="suc col-md-1">$0.50</th>
+			<th class="suc col-md-1">$1</th>
+			<th class="suc col-md-1">$2</th>
+			<th class="suc col-md-1">$5</th>
+			<th class="suc col-md-1">$10</th>
+			<th class="suc col-md-1">$20</th>
+			<th class="suc col-md-1">$50</th>
+			<th class="suc col-md-1">$100</th>
+			<th class="suc col-md-1">$200</th>
+			<th class="suc col-md-1">$500</th>
+			<th class="suc col-md-1">Hielo</th>
+			<th class="suc col-md-1">Agua</th>
+			<!--		<th class="suc col-md-1" >Otros</th> -->
+			<th class="suc col-md-1">Tarjetas</th>
+			<th class="suc col-md-1">T Sistema</th>
+			<th class="suc col-md-1">Inicio</th>
+			<th class="suc col-md-1">Final</th>
+			<th class="suc col-md-1">Retiro</th>
+			<th class="suc col-md-1">T Notas</th>
+			<th class="suc col-md-1">T Venta</th>
+			<th class="suc col-md-1">T Efectivo</th>
+			<th class="suc col-md-1">Diferencia</th>
+		</tr>
+		<?php
+            require_once("../controllers/tablaResumen.php");
+    ?>
+    <?php
+    for($i=0; $i<$r ;$i++)
+    {
+        echo "<tr>";
+        echo "<td><small>".$corte[$i]['fecha']."</small></td>";
+        //		echo "<td>".$corte[$i]['diezCentavos']."</td>";
+        //		echo "<td>".$corte[$i]['veinteCentavos']."</td>";
+        echo "<td>".$corte[$i]['cincuentaCentavos']."</td>";
+        echo "<td>".$corte[$i]['unPeso']."</td>";
+        echo "<td>".$corte[$i]['dosPesos']."</td>";
+        echo "<td>".$corte[$i]['cincoPesos']."</td>";
+        echo "<td>".$corte[$i]['diezPesos']."</td>";
+        echo "<td>".$corte[$i]['veintePesos']."</td>";
+        echo "<td>".$corte[$i]['cincuentaPesos']."</td>";
+        echo "<td>".$corte[$i]['cienPesos']."</td>";
+        echo "<td>".$corte[$i]['doscientosPesos']."</td>";
+        echo "<td>".$corte[$i]['quinientosPesos']."</td>";
+        echo "<td>".$corte[$i]['hielo']."</td>";
+        echo "<td>".$corte[$i]['agua']."</td>";
+        //		echo "<td>".$corte[$i]['otros']."</td>";
+        echo "<td>".$corte[$i]['tarjetas']."</td>";
+        echo "<td>".$corte[$i]['sistema']."</td>";
+        echo "<td>".$corte[$i]['inicio']."</td>";
+        echo "<td>".$corte[$i]['fin']."</td>";
+        echo "<td>".$corte[$i]['retiro']."</td>";
+        echo "<td>".$corte[$i]['totalNotas']."</td>";
+        echo "<td>".$corte[$i]['totalVenta']."</td>";
+        echo "<td>".$corte[$i]['totalEfectivo']."</td>";
+        echo "<td>".$corte[$i]['diferencia']."</td>";
+        echo "</tr>";
+    }
+    ?>
+    </table>
+    </div>
+
 
 </body>
 </html>

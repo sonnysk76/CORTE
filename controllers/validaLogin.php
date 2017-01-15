@@ -1,10 +1,10 @@
 <?php
-	/* 2.- Carga la clase Usuarios.php
+	/* 2.- Carga el archivo de las clases.
 		esta clase se conecata con la base de datos "corte" y la tabla "usuarios"
 		para validar que el usuario y la clave existen en la base de datos
 	*/
 
-	require_once("../clases/Usuarios.php");
+	require_once("../clases/clases.php");
 
 	$n = $_POST["usuario"];
 	$c = $_POST["clave"];
@@ -21,3 +21,4 @@
 		header("location:../index.php");
 		
 	}
+?>
