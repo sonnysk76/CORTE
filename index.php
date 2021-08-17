@@ -1,2 +1,3 @@
 <?php
-require 'views/login.view.php';
+include_once("config.php");
+require ROOT.'views/login.view.php';
