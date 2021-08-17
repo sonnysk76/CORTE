@@ -3,8 +3,10 @@
 		esta clase se conecata con la base de datos "corte" y la tabla "usuarios"
 		para validar que el usuario y la clave existen en la base de datos
 	*/
+include_once("../config.php");
 
-	require_once("../clases/clases.php");
+        include_once(ROOT . "clases/clases.php");
+
 
 	$n = $_POST["usuario"];
 	$c = $_POST["clave"];
