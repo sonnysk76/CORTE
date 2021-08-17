@@ -1,3 +1,7 @@
+<?php
+include_once("../config.php");
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -85,7 +89,7 @@
 
     <div class="container">
         <?php
-        require_once ("../controllers/resumen.php");
+        require_once(ROOT . "controllers/resumen.php");  // ("/var/www/html/public/controllers/resumen.php");
         ?>
         <h4 class="col-md-4">Caja inicial:<strong> $<?php print $corte2[0]["fin"]; ?></strong></h4>
         <h4 class="col-md-4">Total Efectivo:<strong> $<?php print $corte[0]["totalEfectivo"]; ?></strong></h4>
@@ -128,8 +132,8 @@
 			<th class="suc col-md-1">Diferencia</th>
 		</tr>
 		<?php
-            require_once("../controllers/tablaResumen.php");
-    ?>
+            require_once(ROOT . "controllers/tablaResumen.php");//("/var/www/html/public/controllers/tablaResumen.php");	
+    		?>
     <?php
     for($i=0; $i<$r ;$i++)
     {
