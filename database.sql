@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `clave`, `nivel`) VALUES
-(1, 'Mayte', '8976', 1);
+(1, 'admin', 'corte', 1);
 
 --
 -- Índices para tablas volcadas
