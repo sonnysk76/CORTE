@@ -1,5 +1,7 @@
 <?php
-require_once("../clases/clases.php");
+require_once("../config.php");
+
+require_once(ROOT . "clases/clases.php");
 
 
 $corte = new Corte();
